@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+    <title>Library</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h1>Library</h1>
+    <button id="show-modal">New Book</button>
+    <div class="modal modal--hidden">
+        <div id="modal-contents">
+          <button id="hide-modal">X</button>
+          <form id="open-form">
+            <label for="title">Title:</label>
+            <input type="text" placeholder="Title" name="title" id="title" value=''>
+            <label for="author">Author:</label>
+            <input type="text" placeholder="Author" name="author" id="author" value=''>
+            <label for="author">Pages:</label>
+            <input type="text" placeholder="Pages" name="pages" id="pages" value=''>
+            <label for="status">Have read/Not read:</label>
+            <select name = "status" id="status">
+                <option value="Have read">Have read</option>
+                <option value="Not read">Not read</option>
+            </select><br><br>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    <div id="container">
+
+    </div>
 </body>
 </html>
