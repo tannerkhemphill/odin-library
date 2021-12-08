@@ -26,9 +26,43 @@ function displayBooks() {
         let book = myLibrary[i];
         let card = document.createElement('div');
         card.classList.add('card');
+        card.dataset.index = i;
         card.textContent = `Title: ${book.title} \r\nAuthor: ${book.author} \r\nPages: ${book.pages} \r\nStatus: ${book.status}`;
         library.appendChild(card);
     }
+    addButtons();
+    let removes = document.querySelectorAll('.remove');
+    removes.forEach((remove) => {
+        remove.addEventListener('click', (event) => {
+            let target = event.currentTarget;
+            let parent = target.parentNode;
+            let div = parent.parentNode;
+            let index = parseInt(div.dataset.index);
+            removeBook(index);
+        })
+    });
+};
+
+function addButtons() {
+    let cards = document.querySelectorAll('.card');
+    cards.forEach((card) => {
+        let container = document.createElement('div');
+        container.classList.add('button-container');
+        card.appendChild(container);
+        let button1 = document.createElement('button');
+        let button2 = document.createElement('button');
+        button1.classList.add('remove');
+        button2.classList.add('toggle');
+        button1.innerHTML = 'X';
+        button2.innerHTML = 'Read';
+        container.appendChild(button1);
+        container.appendChild(button2);
+    })
+};
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
 };
 
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'Have read')
