@@ -10,6 +10,16 @@ function Book(title, author, pages, status) {
     };
 };
 
+Book.prototype.toggleRead = function() {
+    if (this.status === "Have read") {
+        this.status = "Not read";
+    }
+    else {
+        this.status = "Have read";
+    }
+    displayBooks();
+};
+
 function addBookToLibrary(title, author, pages, status) {
     let book = new Book(title, author, pages, status);
     myLibrary.push(book);
@@ -39,6 +49,16 @@ function displayBooks() {
             let div = parent.parentNode;
             let index = parseInt(div.dataset.index);
             removeBook(index);
+        })
+    });
+    let toggles = document.querySelectorAll('.toggle');
+    toggles.forEach((toggle) => {
+        toggle.addEventListener('click', (event) => {
+            let target = event.currentTarget;
+            let parent = target.parentNode;
+            let div = parent.parentNode;
+            let index = parseInt(div.dataset.index);
+            myLibrary[index].toggleRead();
         })
     });
 };
